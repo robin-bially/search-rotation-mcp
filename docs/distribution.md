@@ -14,7 +14,6 @@ The 0.5.0 release renamed the MCP tools to `search_web`, `fetch_url`, `get_engin
 | Official MCP Registry | `io.github.robin-bially/search-rotation` | release workflow, GitHub OIDC | 0.5.1; the old `io.github.localfoundry/search-rotation` stays frozen at 0.4.10 because the registry has no unpublish |
 | GitHub releases | tag, tarball and checksum | release script | v0.5.1 |
 | Glama | [directory entry](https://glama.ai/mcp/servers/robin-bially/search-rotation-mcp), rated A | Glama indexes the repository on its own | listed under the current account name; Glama picked up the rename by itself, the previous `RobinBially` path still resolves |
-| mcpservers.org | [directory entry](https://mcpservers.org/servers/localfoundry/search-rotation-mcp) | reviewed by the site, "Request update" on the entry page | listed (seen 2026-10-10), but under the old `localfoundry` path; repository, image and docs links point to `github.com/localfoundry/...` and rely on GitHub's rename redirect |
 | PulseMCP | — | ingests the official registry | submissions paused, not listed yet |
 
 Channels that build on the official registry follow a release by themselves, so a
@@ -45,13 +44,15 @@ Four details are easy to forget:
 - After a release: `npm view search-rotation version` and the [registry entry](https://registry.modelcontextprotocol.io/?q=io.github.robin-bially%2Fsearch-rotation) should both show the new version. The release script already waits for npm. A failed publish workflow leaves the release and the tap ahead of npm, which happened with 0.4.11; `gh workflow run publish.yml` then repairs npm and the registry in one run.
 - Dependency and tap maintenance runs outside this repository on a biweekly schedule.
 - The GitHub account moved from `localfoundry` to `robin-bially` on 2026-09-26. The registry has no unpublish, so the entry `io.github.localfoundry/search-rotation` stays frozen at 0.4.10 while the next release adds `io.github.robin-bially/search-rotation`. The old handle is free again, so anything still pointing there can end up at a different account.
-- Open externally: the mcpservers.org entry still carries the old `localfoundry` links and needs an update request, and PulseMCP is paused. Glama has re-crawled the repository after the rename.
+- Open externally: PulseMCP is paused and takes the entry from the official registry once it reopens. Glama has re-crawled the repository after the rename.
 
 ## Deliberately not used
 
 Directories that require a new account before a submission (Glama's own form,
 mcp.so) are skipped. The Glama listing exists because Glama indexes public GitHub
 repositories without a submission; it picked up the repository rename by itself.
+
+mcpservers.org is not maintained. The entry from the 2026-09-26 submission went live under the old `localfoundry` path and brought no visible stars; it stays as it is and is not updated. The channels that count are the official MCP Registry, Glama and PulseMCP.
 
 Curated awesome lists are skipped too. The three merge requests opened on
 2026-09-26 (punkpeye/awesome-mcp-servers#15171, YuzeHao2023/Awesome-MCP-Servers#550,
