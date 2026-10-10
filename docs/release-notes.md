@@ -1,3 +1,21 @@
+## v0.5.1 — Dependency update for the MCP SDK advisory
+
+Maintenance release. `@modelcontextprotocol/sdk` moves from 1.30.1 to 1.32.1, which
+fixes an advisory in the SDK's OAuth client: it could send credentials to an
+authorization server chosen by the MCP server. Hono 4.13.13 and @hono/node-server
+2.1.4 come along as patch updates. Tools, arguments and configuration are unchanged.
+
+```sh
+brew update && brew upgrade robin-bially/tap/search-rotation
+```
+
+Or run the pinned GitHub version:
+
+```sh
+npx -y --allow-git=all github:robin-bially/search-rotation-mcp#v0.5.1
+```
+
+
 ## v0.5.0 — Consistent tool names and programmable engine configuration
 
 The tool definitions were rewritten against the TDQS rubric, and two tools changed
