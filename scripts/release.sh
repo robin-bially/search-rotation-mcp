@@ -76,6 +76,11 @@ command -v node >/dev/null || issues+=("node fehlt.")
 command -v npm >/dev/null || issues+=("npm fehlt.")
 command -v gh >/dev/null || issues+=("gh CLI fehlt.")
 [[ -f "$RELEASE_NOTES" ]] || issues+=("Release notes fehlen: $RELEASE_NOTES")
+# Der Abschnitt der Version muss vor dem Push feststehen: fehlt er erst nach dem
+# Tag-Push, ist der Tag veröffentlicht, das Release aber nicht angelegt.
+if [[ -f "$RELEASE_NOTES" ]] && ! grep -Eq "^##[[:space:]]+v?${VERSION//./\\.}([[:space:]]|$)" "$RELEASE_NOTES"; then
+    issues+=("Kein Abschnitt für v$VERSION in $RELEASE_NOTES.")
+fi
 if [[ $force -eq 0 ]]; then
     git diff --quiet || issues+=("Uncommitted changes; erst committen (--force überspringt).")
     [[ -z "$(git ls-files --others --exclude-standard)" ]] || issues+=("Untracked files; erst committen oder ignorieren (--force überspringt).")
