@@ -1,3 +1,22 @@
+## v0.5.2 — Dependency update for four advisories
+
+Maintenance release with no change to tools, arguments or configuration. The lockfile
+moves `zod` to 4.6.7 (memory exhaustion on oversized constrained collections),
+`@modelcontextprotocol/sdk` to 1.32.2 and `@hono/node-server` to 2.1.5, and pulls in
+fixed versions of the transitive packages `body-parser`, `fast-uri` and
+`ip-address`. `npm audit` reports no vulnerabilities.
+
+```sh
+brew update && brew upgrade robin-bially/tap/search-rotation
+```
+
+Or run the pinned GitHub version:
+
+```sh
+npx -y --allow-git=all github:robin-bially/search-rotation-mcp#v0.5.2
+```
+
+
 ## v0.5.1 — Dependency update for the MCP SDK advisory
 
 Maintenance release. `@modelcontextprotocol/sdk` moves from 1.30.1 to 1.32.1, which
