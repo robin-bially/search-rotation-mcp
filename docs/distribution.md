@@ -1,7 +1,7 @@
 # Distribution and listings
 
 Where search-rotation is published or listed, who keeps each channel current, and
-what still needs attention. Snapshot: 2026-10-10, after the 0.5.1 maintenance release.
+what still needs attention. Snapshot: 2026-10-24, after the 0.5.2 maintenance release.
 The 0.5.0 release renamed the MCP tools to `search_web`, `fetch_url`, `get_engine_status`,
 `update_engine_config` and `open_dashboard`.
 
@@ -9,10 +9,10 @@ The 0.5.0 release renamed the MCP tools to `search_web`, `fetch_url`, `get_engin
 
 | Channel | Entry | Kept current by | State |
 | --- | --- | --- | --- |
-| npm | `search-rotation` | release workflow, trusted publishing | 0.5.1 |
-| Homebrew | `brew install robin-bially/tap/search-rotation` | release script writes the formula | 0.5.1 |
-| Official MCP Registry | `io.github.robin-bially/search-rotation` | release workflow, GitHub OIDC | 0.5.1; the old `io.github.localfoundry/search-rotation` stays frozen at 0.4.10 because the registry has no unpublish |
-| GitHub releases | tag, tarball and checksum | release script | v0.5.1 |
+| npm | `search-rotation` | release workflow, trusted publishing | 0.5.2 |
+| Homebrew | `brew install robin-bially/tap/search-rotation` | release script writes the formula | 0.5.2 |
+| Official MCP Registry | `io.github.robin-bially/search-rotation` | release workflow, GitHub OIDC | 0.5.2; the old `io.github.localfoundry/search-rotation` stays frozen at 0.4.10 because the registry has no unpublish |
+| GitHub releases | tag, tarball and checksum | release script | v0.5.2 |
 | Glama | [directory entry](https://glama.ai/mcp/servers/robin-bially/search-rotation-mcp), rated A | Glama indexes the repository on its own | listed under the current account name; Glama picked up the rename by itself, the previous `RobinBially` path still resolves |
 | PulseMCP | — | ingests the official registry | submissions paused, not listed yet |
 
