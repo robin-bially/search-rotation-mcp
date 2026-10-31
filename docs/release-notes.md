@@ -1,3 +1,20 @@
+## v0.5.3 — Dependency refresh
+
+Maintenance release with no change to tools, arguments or configuration. The lockfile
+moves `hono` to 4.13.14 and `@types/node` to 26.6.6, together with a few patch
+updates of transitive packages. `npm audit` reports no vulnerabilities.
+
+```sh
+brew update && brew upgrade robin-bially/tap/search-rotation
+```
+
+Or run the pinned GitHub version:
+
+```sh
+npx -y --allow-git=all github:robin-bially/search-rotation-mcp#v0.5.3
+```
+
+
 ## v0.5.2 — Dependency update for four advisories
 
 Maintenance release with no change to tools, arguments or configuration. The lockfile
