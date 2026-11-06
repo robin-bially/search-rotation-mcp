@@ -92,7 +92,7 @@ test('capability matrix accounts for credentials and one-sided bounds', () => {
   for (const a of ADAPTERS.filter(a => a.search)) {
     for (const apiKey of [undefined, 'fixture']) {
       const ctx = { apiKey };
-      assert.equal(Boolean(a.supportsSearchTime?.({ query: 'q', ...bounds }, ctx)), ['tavily', 'firecrawl'].includes(a.meta.id) || (a.meta.id === 'exa' && Boolean(apiKey)), `${a.meta.id}: two bounds`);
+      assert.equal(Boolean(a.supportsSearchTime?.({ query: 'q', ...bounds }, ctx)), ['tavily', 'firecrawl', 'you'].includes(a.meta.id) || (a.meta.id === 'exa' && Boolean(apiKey)), `${a.meta.id}: two bounds`);
       assert.equal(Boolean(a.supportsSearchTime?.({ query: 'q', startDate: bounds.startDate }, ctx)), a.meta.id === 'tavily' || (a.meta.id === 'exa' && Boolean(apiKey)), `${a.meta.id}: one bound`);
     }
   }

@@ -46,7 +46,7 @@
     <rect x="229" y="491" width="268" height="32" rx="16" fill="#151d2d" stroke="#303c54"/>
     <text x="251" y="512" fill="#b7c7df" font-size="13">Einheitlich: Titel · URL · Beschreibung</text>
     <path d="M53 555 H1226" stroke="#293245"/>
-    <text x="54" y="591" fill="#94a3bd" font-size="15">Tavily · Firecrawl · Parallel · Exa · Google PSE · Jina · DuckDuckGo</text>
+    <text x="54" y="591" fill="#94a3bd" font-size="15">Tavily · Firecrawl · Parallel · Exa · You.com · Google PSE · Jina · DuckDuckGo</text>
     <text x="54" y="615" fill="#65758f" font-size="13">4 MCP-Tools · Lokales Dashboard · Direkt von GitHub installierbar</text>
   </g>
 </svg>

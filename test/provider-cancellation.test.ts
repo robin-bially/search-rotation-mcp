@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { PARALLEL } from "../src/engines/parallel.js";
 import { EXA } from "../src/engines/exa.js";
+import { YOU } from "../src/engines/you.js";
 import { TAVILY } from "../src/engines/tavily.js";
 import { FIRECRAWL } from "../src/engines/firecrawl.js";
 
@@ -26,10 +27,10 @@ for (const adapter of [TAVILY, FIRECRAWL]) {
   });
 }
 
-for (const provider of [EXA, PARALLEL]) {
+for (const provider of [EXA, PARALLEL, YOU]) {
 for (const stage of ["initialize", "tools/call"]) {
   for (const kind of ["search", "fetch"] as const) {
-    if (provider === PARALLEL && kind === "fetch") continue;
+    if (kind === "fetch" && provider.meta.keylessCapabilities && !provider.meta.keylessCapabilities.includes("fetch")) continue;
     test(`${provider.meta.id} keyless ${kind}: Abbruch während ${stage} beendet den Transport-Request`, async (t) => {
       const controller = new AbortController();
       let heldSignal: AbortSignal | undefined | null;

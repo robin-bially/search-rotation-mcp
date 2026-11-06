@@ -12,7 +12,7 @@ import { ADAPTERS, KNOWN_IDS, SEARCH_ORDER, FETCH_ORDER, DEFAULT_ENABLED } from 
 import { normalizeConfig } from '../dist/config.js';
 
 const now = process.env.SCREENSHOT_FIXTURE_ONLY === '1' ? new Date() : new Date('2026-09-06T10:30:00Z');
-const counts = { tavily: [248, 21, 252.2], firecrawl: [186, 32, 404], parallel: [312, 16, 328], exa: [158, 8, 166], 'google-cse': [0, 0, 0], jina: [0, 67, 67], duckduckgo: [44, 0, 44] };
+const counts = { tavily: [248, 21, 252.2], firecrawl: [186, 32, 404], parallel: [312, 16, 328], exa: [158, 8, 166], you: [96, 0, 96], 'google-cse': [0, 0, 0], jina: [0, 67, 67], duckduckgo: [44, 0, 44] };
 const config = normalizeConfig({}, { knownIds: KNOWN_IDS, searchOrder: SEARCH_ORDER, fetchOrder: FETCH_ORDER, defaultEnabled: DEFAULT_ENABLED });
 for (const engine of config.engines) {
   // Deliberately nonfunctional fixture values, never used for outbound requests.

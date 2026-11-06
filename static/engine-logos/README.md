@@ -6,6 +6,7 @@ Locally bundled copies of the website favicons previously loaded by the dashboar
 - `firecrawl.png`: https://www.firecrawl.dev (source: https://www.google.com/s2/favicons?domain=www.firecrawl.dev&sz=64)
 - `parallel.png`: https://parallel.ai (source: https://www.google.com/s2/favicons?domain=parallel.ai&sz=64)
 - `exa.png`: https://exa.ai (source: https://www.google.com/s2/favicons?domain=exa.ai&sz=64)
+- `you.png`: https://you.com (source: https://www.google.com/s2/favicons?domain=you.com&sz=64)
 - `google-cse.png`: https://www.google.com (source: https://www.google.com/s2/favicons?domain=www.google.com&sz=64)
 - `jina.png`: https://jina.ai (source: https://www.google.com/s2/favicons?domain=jina.ai&sz=64)
 - `duckduckgo.png`: https://duckduckgo.com (source: https://www.google.com/s2/favicons?domain=duckduckgo.com&sz=64)

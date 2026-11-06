@@ -10,7 +10,11 @@ import { buildStatus } from '../src/status.js';
 const defaults = { knownIds: KNOWN_IDS, searchOrder: SEARCH_ORDER, fetchOrder: FETCH_ORDER, defaultEnabled: DEFAULT_ENABLED };
 test('Fresh config enables only engines that work without credentials', () => {
   const cfg = normalizeConfig(null, defaults);
-  assert.deepEqual(cfg.engines.filter(e => e.enabled).map(e => e.id).sort(), ['exa', 'firecrawl', 'jina', 'parallel', 'tavily']);
+  assert.deepEqual(cfg.engines.filter(e => e.enabled).map(e => e.id).sort(), ['exa', 'firecrawl', 'jina', 'parallel', 'tavily', 'you']);
+});
+test('Existing configs gain You.com enabled on load', () => {
+  const cfg = normalizeConfig({ engines: [{ id: 'tavily', enabled: true }] }, defaults);
+  assert.equal(cfg.engines.find(e => e.id === 'you')?.enabled, true);
 });
 test('Every keyless engine exposes local successes without a provider cap', async t => {
   const dir = mkdtempSync(join(tmpdir(), 'sr-policy-')); t.after(() => rmSync(dir, { recursive:true, force:true }));
@@ -49,17 +53,18 @@ test('DuckDuckGo is opt-in and an explicit enabled setting is preserved', () => 
 test('Keyless search-only providers are skipped during fetch and expose only available capabilities', async t => {
  const {SearchRouter} = await import('../src/router.js');
  const dir=mkdtempSync(join(tmpdir(),'sr-fetch-policy-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
- const cfg=normalizeConfig(null,defaults);cfg.fetchOrder=['tavily','parallel','jina'];
+ const cfg=normalizeConfig(null,defaults);cfg.fetchOrder=['tavily','parallel','you','jina'];
  let forbidden=0;
- const adapters=ADAPTERS.filter(a=>['tavily','parallel','jina'].includes(a.meta.id)).map(a=>({...a,fetchUrl:async()=>{if(a.meta.id!=='jina'){forbidden++;throw Error('key required');}return 'Page content';}}));
+ const adapters=ADAPTERS.filter(a=>['tavily','parallel','you','jina'].includes(a.meta.id)).map(a=>({...a,fetchUrl:async()=>{if(a.meta.id!=='jina'){forbidden++;throw Error('key required');}return 'Page content';}}));
  const usage=new UsageStore(dir);
  const router=new SearchRouter({getConfig:()=>cfg,usage,adapters});
  assert.equal((await router.fetchUrl({url:'https://example.com'})).engine,'jina');assert.equal(forbidden,0);
  const status=await buildStatus(cfg,usage,adapters);
- for(const id of ['tavily','parallel']) {
+ for(const id of ['tavily','parallel','you']) {
    const row = status.find(r=>r.id===id)!;
    assert.deepEqual(row.capabilities,['search']);
    assert.deepEqual(row.keylessCapabilities,['search']);
-   assert.ok(row.supportedCapabilities?.includes('fetch'));
+   if(id==='you') assert.equal(row.supportedCapabilities?.includes('fetch'),false);
+   else assert.ok(row.supportedCapabilities?.includes('fetch'));
  }
 });

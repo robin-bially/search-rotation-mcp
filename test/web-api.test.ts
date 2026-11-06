@@ -481,7 +481,7 @@ test("POST /api/test: kind außer fetch fällt auf search zurück", async () => 
 
 test("provider logos are served locally as PNGs; unknown files stay inaccessible", async () => {
   const { app } = makeApp();
-  for (const id of ["tavily", "firecrawl", "parallel", "exa", "google-cse", "jina", "duckduckgo"]) {
+  for (const id of ["tavily", "firecrawl", "parallel", "exa", "you", "google-cse", "jina", "duckduckgo"]) {
     const response = await app.request(`/engine-logos/${id}.png`);
     assert.equal(response.status, 200, id);
     assert.equal(response.headers.get("content-type"), "image/png");

@@ -1,3 +1,26 @@
+## v0.6.0 — You.com joins the search rotation
+
+You.com is now a search provider. Without an API key it uses the hosted MCP profile
+`?profile=free`: no account, 100 searches/day, search only. A configured key switches
+to the direct Search API. Results from web and news are merged, de-duplicated and
+trimmed to `numResults`; a valid empty answer counts as zero results instead of a
+provider failure. Date filters are sent as You.com `freshness` ranges. Fetch rotation
+is unchanged because You.com does not extract pages.
+
+`searchOrder` and `fetchOrder` still expect complete lists. After upgrading, include
+`you` in `searchOrder`.
+
+```sh
+brew update && brew upgrade robin-bially/tap/search-rotation
+```
+
+Or run the pinned GitHub version:
+
+```sh
+npx -y --allow-git=all github:robin-bially/search-rotation-mcp#v0.6.0
+```
+
+
 ## v0.5.3 — Dependency refresh
 
 Maintenance release with no change to tools, arguments or configuration. The lockfile

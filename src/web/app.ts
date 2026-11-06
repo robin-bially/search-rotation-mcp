@@ -66,7 +66,7 @@ export function buildWebApp(deps: WebDeps) {
   app.get("/style.css", serve("style.css", "text/css; charset=utf-8"));
 
   // Exact routes only: never use a request path to read arbitrary static files.
-  for (const id of ["tavily", "firecrawl", "parallel", "exa", "google-cse", "jina", "duckduckgo"]) {
+  for (const id of ["tavily", "firecrawl", "parallel", "exa", "you", "google-cse", "jina", "duckduckgo"]) {
     app.get(`/engine-logos/${id}.png`, c => c.body(
       readFileSync(path.join(staticDir, "engine-logos", `${id}.png`)),
       200, { "content-type": "image/png", "cache-control": "no-cache" },

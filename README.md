@@ -57,13 +57,15 @@ Add your provider keys in the dashboard, then connect your assistant using the *
 - **Local dashboard:** API keys, drag-and-drop engine order, per-engine calls and errors, separate quota balances, and interactive request history.
 - **Local or remote:** MCP over stdio or authenticated Streamable HTTP.
 
-**Providers:** Tavily · Firecrawl · Parallel · Exa · Google PSE · Jina Reader · DuckDuckGo HTML. [Keyless access and quota accounting](docs/provider-access.md) vary by provider.
+**Providers:** Tavily · Firecrawl · Parallel · Exa · You.com · Google PSE · Jina Reader · DuckDuckGo HTML. [Keyless access and quota accounting](docs/provider-access.md) vary by provider.
 
 ## MCP tools
 
 `search_web` · `fetch_url` · `get_engine_status` · `update_engine_config` · `open_dashboard`
 
 Every name pairs an action with its target. `update_engine_config` covers what the dashboard's engine list does: enable and disable engines, set the search and fetch rotation order, and set monthly or daily limits per engine. API keys stay in the dashboard. If your client keeps an allowlist of tool names, replace the earlier `web_search` and `engine_status` entries there.
+
+`searchOrder` and `fetchOrder` must list every search- or fetch-capable engine exactly once. After an upgrade that adds an engine, include its id; the tool names missing ids and writes nothing otherwise.
 
 The dashboard's **MCP Tools** tab explains each tool, its parameters, and copyable example calls.
 
@@ -107,10 +109,11 @@ Relative windows are resolved **once per request** into UTC dates, including acr
 | Firecrawl, with or without key | Yes | Yes | Skipped |
 | Exa, direct API with key | Yes | Yes | Yes |
 | Exa, hosted MCP without key | Skipped | Skipped | Skipped |
+| You.com, with or without key | Yes | Yes | Skipped |
 | Parallel, either access mode | Skipped | Skipped | Skipped |
 | Google PSE / DuckDuckGo HTML | Skipped | Skipped | Skipped |
 
-This table describes **implemented support in search-rotation**, not every upstream feature. Tavily receives `start_date` / `end_date`, Firecrawl receives a custom `tbs` range, and Exa receives `startPublishedDate` / `endPublishedDate`. Firecrawl is conservatively excluded for one-sided dates; the other skipped paths have no implemented date mapping.
+This table describes **implemented support in search-rotation**, not every upstream feature. Tavily receives `start_date` / `end_date`, Firecrawl receives a custom `tbs` range, Exa receives `startPublishedDate` / `endPublishedDate`, and You.com receives a `freshness` range in `YYYY-MM-DDtoYYYY-MM-DD` form. Firecrawl and You.com are conservatively excluded for one-sided dates; the other skipped paths have no implemented date mapping.
 
 The router excludes incompatible providers **before quota checks and rotation**, including when an incompatible `engine` is preferred. Each eligible provider pool has its own rotation cursor, so mixing filtered and unfiltered searches does not starve providers. Existing quota priorities, cooldowns, strict-free rules, and failover apply within that pool. If no compatible provider is available, the search fails explicitly; it never retries without the filter. Searches without time arguments retain access to all otherwise eligible providers.
 
