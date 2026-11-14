@@ -1,3 +1,23 @@
+## v0.6.1 — Security update for hono and the node server adapter
+
+Maintenance release. `hono` moves to 4.13.18 and `@hono/node-server` to 2.1.8, which
+close two moderate advisories: a path that bypasses middleware inside `mount()`, an
+unhandled `ECONNRESET` during a WebSocket upgrade, and paths with a backslash that
+bypass path-based access control behind a reverse proxy. `npm audit` reports no
+vulnerabilities. The CI workflow uses `actions/setup-node` 7.1.0. Tools, arguments and
+configuration are unchanged.
+
+```sh
+brew update && brew upgrade robin-bially/tap/search-rotation
+```
+
+Or run the pinned GitHub version:
+
+```sh
+npx -y --allow-git=all github:robin-bially/search-rotation-mcp#v0.6.1
+```
+
+
 ## v0.6.0 — You.com joins the search rotation
 
 You.com is now a search provider. Without an API key it uses the hosted MCP profile
